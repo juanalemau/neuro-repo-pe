@@ -1,0 +1,43 @@
+{
+  "name": "ai-context-init",
+  "version": "0.1.0",
+  "description": "Initialize and maintain compact, vendor-neutral AI context for any codebase.",
+  "type": "module",
+  "bin": {
+    "ai-context": "./src/cli.js"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check src/cli.js && node --check src/index.js",
+    "verify": "npm run lint && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "context",
+    "tokens",
+    "codebase",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanalemau/neuro-repo-pe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/juanalemau/neuro-repo-pe/issues"
+  },
+  "homepage": "https://github.com/juanalemau/neuro-repo-pe#readme",
+  "license": "MIT"
+}

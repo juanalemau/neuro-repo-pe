@@ -1,0 +1,13 @@
+{
+  "contextDir": ".ai",
+  "tokenBudget": 1800,
+  "maxFileBytes": 262144,
+  "include": [],
+  "exclude": [],
+  "bridges": [
+    "agents",
+    "claude",
+    "copilot",
+    "gemini"
+  ]
+}

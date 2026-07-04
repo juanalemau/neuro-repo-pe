@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-context-init:config-schema:v1",
+  "title": "ai-context-init configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contextDir": {
+      "type": "string",
+      "default": ".ai"
+    },
+    "tokenBudget": {
+      "type": "integer",
+      "minimum": 256,
+      "default": 1800
+    },
+    "maxFileBytes": {
+      "type": "integer",
+      "minimum": 1024,
+      "default": 262144
+    },
+    "include": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "exclude": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "bridges": {
+      "type": "array",
+      "items": {
+        "enum": ["agents", "claude", "copilot", "gemini"]
+      },
+      "uniqueItems": true,
+      "default": ["agents", "claude", "copilot", "gemini"]
+    }
+  }
+}

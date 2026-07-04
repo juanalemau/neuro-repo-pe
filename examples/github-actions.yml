@@ -1,0 +1,16 @@
+name: AI context
+
+on:
+  pull_request:
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes ai-context-init sync .
+      - run: npx --yes ai-context-init doctor .
+      - run: git diff --exit-code
