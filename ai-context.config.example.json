@@ -1,9 +1,17 @@
 {
   "$schema": "./docs/config.schema.json",
   "contextDir": ".ai",
+  "controlsDir": ".",
   "tokenBudget": 1800,
   "maxFileBytes": 262144,
   "include": [],
   "exclude": [],
-  "bridges": ["agents", "claude", "copilot", "gemini"]
+  "bridges": ["agents", "claude", "copilot", "gemini"],
+  "apm": {
+    "enabled": false,
+    "provider": "generic",
+    "serviceName": "",
+    "environment": "",
+    "dashboardUrl": ""
+  }
 }

@@ -71,7 +71,72 @@ export function detectStack(files) {
 
   detectPackageFrameworks(files, frameworks);
 
-  return { languages, frameworks: [...new Set(frameworks)] };
+  return {
+    languages,
+    frameworks: [...new Set(frameworks)],
+    runtimes: detectRuntimeVersions(files),
+  };
+}
+
+function detectRuntimeVersions(files) {
+  const runtimes = [];
+  const byPath = new Map(files.map((file) => [file.path, file.content.trim()]));
+  const add = (name, version, source) => {
+    if (version && !runtimes.some((item) => item.name === name)) {
+      runtimes.push({ name, version: version.trim(), source });
+    }
+  };
+
+  const packageJson = parseJson(byPath.get("package.json"));
+  add("Node.js", byPath.get(".nvmrc") || byPath.get(".node-version") || packageJson?.engines?.node, ".nvmrc/.node-version/package.json");
+
+  const pyproject = byPath.get("pyproject.toml");
+  add("Python", byPath.get(".python-version") || match(pyproject, /requires-python\s*=\s*["']([^"']+)/u), ".python-version/pyproject.toml");
+  add("Python", match(byPath.get("runtime.txt"), /^python-?(.+)$/imu), "runtime.txt");
+
+  add("Go", match(byPath.get("go.mod"), /^go\s+([^\s]+)$/mu), "go.mod");
+  add("Rust", rustVersion(byPath), "rust-toolchain.toml/rust-toolchain");
+
+  const globalJson = parseJson(byPath.get("global.json"));
+  add(".NET", globalJson?.sdk?.version, "global.json");
+
+  const pom = byPath.get("pom.xml");
+  const gradle = byPath.get("build.gradle") || byPath.get("build.gradle.kts");
+  add(
+    "Java",
+    byPath.get(".java-version")
+      || match(byPath.get(".sdkmanrc"), /^java=([^\s]+)$/mu)
+      || match(pom, /<(?:java\.version|maven\.compiler\.release|maven\.compiler\.source)>([^<]+)/u)
+      || match(gradle, /JavaLanguageVersion\.of\((\d+)\)/u),
+    ".java-version/.sdkmanrc/pom.xml/build.gradle",
+  );
+
+  const composer = parseJson(byPath.get("composer.json"));
+  add("PHP", composer?.config?.platform?.php, "composer.json");
+
+  add("Ruby", byPath.get(".ruby-version"), ".ruby-version");
+  add("Dart", match(byPath.get("pubspec.yaml"), /^\s*sdk:\s*["']?([^"'\n]+)/mu), "pubspec.yaml");
+  add("Swift", byPath.get(".swift-version"), ".swift-version");
+  add("Elixir", match(byPath.get(".tool-versions"), /^elixir\s+([^\s]+)$/mu), ".tool-versions");
+  return runtimes;
+}
+
+function parseJson(content) {
+  try {
+    return content ? JSON.parse(content) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function match(content, pattern) {
+  return content?.match(pattern)?.[1];
+}
+
+function rustVersion(byPath) {
+  const plain = byPath.get("rust-toolchain");
+  if (plain) return plain.split(/\s/u)[0];
+  return match(byPath.get("rust-toolchain.toml"), /^\s*channel\s*=\s*["']([^"']+)/mu);
 }
 
 function detectPackageFrameworks(files, frameworks) {

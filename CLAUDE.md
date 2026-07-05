@@ -1,1 +1,1 @@
-@.ai/project.md
+@.ai/memory/project-memory.md

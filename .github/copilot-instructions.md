@@ -1,2 +1,3 @@
 The single source of project context is `.ai/`.
-Read `.ai/project.md` first and use its summaries before scanning source files.
+Read `.ai/memory/project-memory.md` first and use `.ai/summaries/summary.md` before scanning
+source files.

@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 3,
+  "stack": {
+    "languages": [
+      {
+        "name": "JavaScript",
+        "fileCount": 21
+      }
+    ],
+    "frameworks": [],
+    "runtimes": [
+      {
+        "name": "Node.js",
+        "version": ">=20",
+        "source": ".nvmrc/.node-version/package.json"
+      }
+    ]
+  },
+  "apm": {
+    "enabled": false,
+    "provider": "generic",
+    "serviceName": "",
+    "environment": "",
+    "dashboardUrl": ""
+  },
+  "statistics": {
+    "files": 43,
+    "bytes": 95728,
+    "symbols": 67,
+    "cacheHits": 39
+  },
+  "repositoryMap": {
+    "includedFiles": 43,
+    "estimatedTokens": 541
+  },
+  "tokenEconomy": {
+    "estimation": "UTF-8 bytes / 4",
+    "sourceBytes": 95728,
+    "estimatedSourceTokens": 23932,
+    "compactMapTokens": 541,
+    "estimatedTokensSaved": 23391,
+    "reductionPercent": 97.7,
+    "compressionRatio": 44.24,
+    "budgetTokens": 1800,
+    "budgetUtilizationPercent": 30.1,
+    "indexedFiles": 43,
+    "omittedFiles": 0,
+    "analysisCacheHits": 39,
+    "analysisCacheHitPercent": 90.7
+  },
+  "files": [
+    {
+      "path": "src/cli.js",
+      "bytes": 7198,
+      "symbols": [
+        "main",
+        "parseArguments",
+        "requiredValue",
+        "parseInteger",
+        "report",
+        "printEconomy",
+        "printBanner",
+        "formatStack",
+        "printHelp"
+      ]
+    },
+    {
+      "path": "src/core/engine.js",
+      "bytes": 7868,
+      "symbols": [
+        "initializeProject",
+        "syncProject",
+        "inspectProject",
+        "doctorProject",
+        "generateControl",
+        "pickOptions",
+        "checkFile",
+        "checkDirectory",
+        "checkContent"
+      ]
+    },
+    {
+      "path": "src/core/config.js",
+      "bytes": 2385,
+      "symbols": [
+        "loadConfig",
+        "validateConfig"
+      ]
+    },
+    {
+      "path": "src/generators/templates.js",
+      "bytes": 4889,
+      "symbols": [
+        "projectTemplate",
+        "architectureTemplate",
+        "conventionsTemplate",
+        "controlsTemplate",
+        "directoryTemplate",
+        "syncScriptTemplates",
+        "vectorizeContext",
+        "compatibilityText"
+      ]
+    },
+    {
+      "path": "src/index.js",
+      "bytes": 696,
+      "symbols": []
+    },
+    {
+      "path": "package.json",
+      "bytes": 907,
+      "symbols": []
+    },
+    {
+      "path": "README.md",
+      "bytes": 6806,
+      "symbols": []
+    },
+    {
+      "path": "src/detectors/languages.js",
+      "bytes": 5225,
+      "symbols": [
+        "detectStack",
+        "detectRuntimeVersions",
+        "parseJson",
+        "match",
+        "rustVersion",
+        "detectPackageFrameworks"
+      ]
+    },
+    {
+      "path": "src/generators/repository-map.js",
+      "bytes": 2798,
+      "symbols": [
+        "generateRepositoryMap",
+        "estimateTokens",
+        "calculateTokenEconomy",
+        "round",
+        "footer"
+      ]
+    },
+    {
+      "path": "ai-context.config.example.json",
+      "bytes": 363,
+      "symbols": []
+    },
+    {
+      "path": "ai-context.config.json",
+      "bytes": 341,
+      "symbols": []
+    },
+    {
+      "path": "docs/config.schema.json",
+      "bytes": 1630,
+      "symbols": []
+    },
+    {
+      "path": "src/core/patterns.js",
+      "bytes": 795,
+      "symbols": [
+        "escapeRegex",
+        "globToRegex",
+        "matchesAny",
+        "normalizePattern"
+      ]
+    },
+    {
+      "path": "src/core/cache.js",
+      "bytes": 772,
+      "symbols": [
+        "loadCache",
+        "saveCache",
+        "cachePath"
+      ]
+    },
+    {
+      "path": "src/core/files.js",
+      "bytes": 743,
+      "symbols": [
+        "writeText",
+        "writeIfMissing",
+        "resolveInside"
+      ]
+    },
+    {
+      "path": "src/core/scanner.js",
+      "bytes": 2364,
+      "symbols": [
+        "scanProject",
+        "visit",
+        "readIgnoreFile"
+      ]
+    },
+    {
+      "path": "src/generators/summary.js",
+      "bytes": 2736,
+      "symbols": [
+        "generateSummary",
+        "generateMachineSummary",
+        "publicApmConfig"
+      ]
+    },
+    {
+      "path": "src/core/project-model.js",
+      "bytes": 1831,
+      "symbols": [
+        "buildProjectModel",
+        "rankFile"
+      ]
+    },
+    {
+      "path": "src/generators/controls.js",
+      "bytes": 3069,
+      "symbols": [
+        "controlDefinition",
+        "slugify"
+      ]
+    },
+    {
+      "path": "src/adapters/bridges.js",
+      "bytes": 1273,
+      "symbols": [
+        "bridgeDefinitions"
+      ]
+    },
+    {
+      "path": "src/core/hash.js",
+      "bytes": 134,
+      "symbols": [
+        "hash"
+      ]
+    },
+    {
+      "path": "src/core/layout.js",
+      "bytes": 889,
+      "symbols": [
+        "contextPath"
+      ]
+    },
+    {
+      "path": "src/detectors/symbols.js",
+      "bytes": 1617,
+      "symbols": [
+        "extractSymbols"
+      ]
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 59,
+      "symbols": []
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 240,
+      "symbols": []
+    },
+    {
+      "path": "CLAUDE.md",
+      "bytes": 30,
+      "symbols": []
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 551,
+      "symbols": []
+    },
+    {
+      "path": "GEMINI.md",
+      "bytes": 182,
+      "symbols": []
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1085,
+      "symbols": []
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "bytes": 155,
+      "symbols": []
+    },
+    {
+      "path": "docs/architecture.md",
+      "bytes": 2599,
+      "symbols": []
+    },
+    {
+      "path": "docs/cli.md",
+      "bytes": 3474,
+      "symbols": []
+    },
+    {
+      "path": "docs/developer-guide.md",
+      "bytes": 9408,
+      "symbols": []
+    },
+    {
+      "path": "docs/landscape.md",
+      "bytes": 1403,
+      "symbols": []
+    },
+    {
+      "path": "docs/languages.md",
+      "bytes": 2271,
+      "symbols": []
+    },
+    {
+      "path": "docs/layout.md",
+      "bytes": 2331,
+      "symbols": []
+    },
+    {
+      "path": "docs/roadmap.md",
+      "bytes": 933,
+      "symbols": []
+    },
+    {
+      "path": "docs/token-economy.md",
+      "bytes": 2617,
+      "symbols": []
+    },
+    {
+      "path": "examples/github-actions.yml",
+      "bytes": 333,
+      "symbols": []
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 391,
+      "symbols": []
+    },
+    {
+      "path": "test/detectors.test.js",
+      "bytes": 2671,
+      "symbols": [
+        "App",
+        "UserService",
+        "Account"
+      ]
+    },
+    {
+      "path": "test/engine.test.js",
+      "bytes": 5826,
+      "symbols": [
+        "startServer"
+      ]
+    },
+    {
+      "path": "test/repository-map.test.js",
+      "bytes": 1840,
+      "symbols": []
+    }
+  ]
+}

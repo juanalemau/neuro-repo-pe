@@ -31,11 +31,53 @@ export function generateRepositoryMap(model, tokenBudget) {
     content: lines.join("\n"),
     estimatedTokens,
     includedFiles,
+    tokenEconomy: calculateTokenEconomy(
+      model,
+      estimatedTokens,
+      tokenBudget,
+      includedFiles,
+    ),
   };
 }
 
 export function estimateTokens(text) {
   return Math.ceil(Buffer.byteLength(text, "utf8") / 4);
+}
+
+export function calculateTokenEconomy(model, mapTokens, tokenBudget, includedFiles) {
+  const sourceBytes = model.statistics?.bytes
+    ?? model.files.reduce((total, file) => total + (file.bytes ?? 0), 0);
+  const sourceTokens = Math.ceil(sourceBytes / 4);
+  const estimatedTokensSaved = Math.max(0, sourceTokens - mapTokens);
+  const reductionPercent = sourceTokens > 0
+    ? round((estimatedTokensSaved / sourceTokens) * 100, 1)
+    : 0;
+  const compressionRatio = mapTokens > 0
+    ? round(sourceTokens / mapTokens, 2)
+    : 0;
+  const cacheHits = model.statistics?.cacheHits ?? 0;
+  const totalFiles = model.files.length;
+
+  return {
+    estimation: "UTF-8 bytes / 4",
+    sourceBytes,
+    estimatedSourceTokens: sourceTokens,
+    compactMapTokens: mapTokens,
+    estimatedTokensSaved,
+    reductionPercent,
+    compressionRatio,
+    budgetTokens: tokenBudget,
+    budgetUtilizationPercent: round((mapTokens / tokenBudget) * 100, 1),
+    indexedFiles: includedFiles,
+    omittedFiles: totalFiles - includedFiles,
+    analysisCacheHits: cacheHits,
+    analysisCacheHitPercent: totalFiles > 0 ? round((cacheHits / totalFiles) * 100, 1) : 0,
+  };
+}
+
+function round(value, digits) {
+  const factor = 10 ** digits;
+  return Math.round(value * factor) / factor;
 }
 
 function footer(includedFiles, totalFiles, tokenBudget, estimatedTokens = tokenBudget) {

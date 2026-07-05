@@ -1,10 +1,10 @@
 {
   "name": "ai-context-init",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Initialize and maintain compact, vendor-neutral AI context for any codebase.",
   "type": "module",
   "bin": {
-    "ai-context": "./src/cli.js"
+    "ai-context": "src/cli.js"
   },
   "exports": {
     ".": "./src/index.js"

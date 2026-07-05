@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { CONTEXT_FILES } from "./layout.js";
 
 export async function loadCache(root, contextDir) {
   try {
@@ -19,5 +20,5 @@ export async function saveCache(root, contextDir, cache) {
 }
 
 function cachePath(root, contextDir) {
-  return path.join(root, contextDir, ".cache.json");
+  return path.join(root, contextDir, CONTEXT_FILES.cache);
 }

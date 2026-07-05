@@ -1,5 +1,6 @@
 {
   "contextDir": ".ai",
+  "controlsDir": ".",
   "tokenBudget": 1800,
   "maxFileBytes": 262144,
   "include": [],
@@ -9,5 +10,12 @@
     "claude",
     "copilot",
     "gemini"
-  ]
+  ],
+  "apm": {
+    "enabled": false,
+    "provider": "generic",
+    "serviceName": "",
+    "environment": "",
+    "dashboardUrl": ""
+  }
 }

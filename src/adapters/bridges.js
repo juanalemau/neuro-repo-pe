@@ -6,27 +6,30 @@ const BRIDGES = {
     content: (contextDir) => `# Agent instructions
 
 The single source of project context is \`${contextDir}/\`.
-Start with \`${contextDir}/project.md\`, then use generated summaries to locate relevant source.
+Start with \`${contextDir}/memory/project-memory.md\`, then read
+\`${contextDir}/summaries/summary.md\` and use generated indexes to locate relevant source.
 Do not duplicate rules in this file.
 `,
   },
   claude: {
     file: "CLAUDE.md",
-    content: (contextDir) => `@${contextDir}/project.md
+    content: (contextDir) => `@${contextDir}/memory/project-memory.md
 `,
   },
   copilot: {
     file: path.join(".github", "copilot-instructions.md"),
     content: (contextDir) => `The single source of project context is \`${contextDir}/\`.
-Read \`${contextDir}/project.md\` first and use its summaries before scanning source files.
+Read \`${contextDir}/memory/project-memory.md\` first and use
+\`${contextDir}/summaries/summary.md\` before scanning source files.
 `,
   },
   gemini: {
     file: "GEMINI.md",
     content: (contextDir) => `# Project context
 
-Read \`${contextDir}/project.md\` first. Use \`${contextDir}/summary.md\` and
-\`${contextDir}/repository-map.md\` to select only the source files needed for the task.
+Read \`${contextDir}/memory/project-memory.md\` first. Use
+\`${contextDir}/summaries/summary.md\` and \`${contextDir}/indexes/repository-map.md\`
+to select only the source files needed for the task.
 `,
   },
 };

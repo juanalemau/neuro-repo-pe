@@ -20,7 +20,41 @@ test("detects languages and frameworks from project files", () => {
       { name: "Python", fileCount: 1 },
     ],
     frameworks: ["Vite", "React"],
+    runtimes: [],
   });
+});
+
+test("detects declared runtime versions without executing project tools", () => {
+  const files = [
+    {
+      path: "package.json",
+      content: JSON.stringify({ engines: { node: ">=22" } }),
+    },
+    { path: "pyproject.toml", content: '[project]\nrequires-python = ">=3.12"\n' },
+    { path: "go.mod", content: "module example.test/app\n\ngo 1.24\n" },
+  ];
+
+  assert.deepEqual(detectStack(files).runtimes, [
+    { name: "Node.js", version: ">=22", source: ".nvmrc/.node-version/package.json" },
+    { name: "Python", version: ">=3.12", source: ".python-version/pyproject.toml" },
+    { name: "Go", version: "1.24", source: "go.mod" },
+  ]);
+});
+
+test("detects JVM and additional popular runtime declarations", () => {
+  const files = [
+    { path: "pom.xml", content: "<properties><java.version>21</java.version></properties>" },
+    { path: ".ruby-version", content: "3.4.1\n" },
+    { path: ".swift-version", content: "6.1\n" },
+    { path: ".tool-versions", content: "erlang 27.0\nelixir 1.18.2\n" },
+  ];
+
+  assert.deepEqual(detectStack(files).runtimes, [
+    { name: "Java", version: "21", source: ".java-version/.sdkmanrc/pom.xml/build.gradle" },
+    { name: "Ruby", version: "3.4.1", source: ".ruby-version" },
+    { name: "Swift", version: "6.1", source: ".swift-version" },
+    { name: "Elixir", version: "1.18.2", source: ".tool-versions" },
+  ]);
 });
 
 test("extracts public symbols across language families", () => {

@@ -5,9 +5,16 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "$schema": {
+      "type": "string"
+    },
     "contextDir": {
       "type": "string",
       "default": ".ai"
+    },
+    "controlsDir": {
+      "type": "string",
+      "default": "."
     },
     "tokenBudget": {
       "type": "integer",
@@ -36,6 +43,24 @@
       },
       "uniqueItems": true,
       "default": ["agents", "claude", "copilot", "gemini"]
+    },
+    "apm": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "provider": { "type": "string", "default": "generic" },
+        "serviceName": { "type": "string", "default": "" },
+        "environment": { "type": "string", "default": "" },
+        "dashboardUrl": { "type": "string", "default": "" }
+      },
+      "default": {
+        "enabled": false,
+        "provider": "generic",
+        "serviceName": "",
+        "environment": "",
+        "dashboardUrl": ""
+      }
     }
   }
 }
